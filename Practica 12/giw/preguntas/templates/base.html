@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}TITULO{% endblock %}
+        </title>
+    </head>
+    <body>
+        <h1>La web para preguntas y respuestas</h1>
+        {% if request.user.username %}
+        <label>Bienvenido {{request.user.username | escape}}</label>
+        {% endif %}
+        {% if request.user.username %}
+        <a href="{% url 'preguntas:logout' %}"><button>Cerrar sesión</button></a>
+        <a href="{% url 'preguntas:index' %}"><button>Ver preguntas</button></a>
+        {% else %}
+        <label>No autentificado</label>
+        <a href="{% url 'preguntas:login' %}"><button>Iniciar sesión</button></a>
+        {% endif %}
+        {% block content %}CONTENIDO{% endblock %}
+    </body>
+</html>

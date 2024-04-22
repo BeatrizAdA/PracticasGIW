@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Pregunta {% endblock %}
+{% block content %}
+<h3>{{question.titulo | safe}} -- {{question.autor | escape}} ({{question.formato_fecha}})</h3>
+<p>{{question.texto | safe}}</p>
+{%if answers %}
+<h3>Respuestas</h3>
+<ol>
+        {% for answer in answers %}
+            <li><div>{{answer.texto | safe}}</div>
+                <div>{{answer.autor | escape}} ({{answer.formato_fecha}})</div></li>
+        {% endfor %}
+</ol>
+{% endif %}
+<h3>Añadir nueva respuesta</h3>
+<form action="{% url 'preguntas:answer_n' question.ident %}" method="POST">
+    <table>
+        {{ answer_form }}
+    </table>
+    {% csrf_token %}
+    <button type="submit">Enviar respuesta</button>
+</form>
+{% endblock %}
