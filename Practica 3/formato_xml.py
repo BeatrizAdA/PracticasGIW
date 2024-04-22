@@ -32,7 +32,7 @@ class ManejadorEjercio1 (xml.sax.ContentHandler):
         También he creado una lista para ir guardando los restaurantes que se
         vayan leyendo al pasear el XML.
         Por otro lado hemos creado la variable texto, en la que se ira guardando con
-        character() lo que hay dentro de una etiqueta"""
+        character() lo que hay dentro de una etiqueta """
         super().__init__()
 
         self.curr_path = []
